@@ -1,17 +1,21 @@
 let savedTasks = [];
 
-document.addEventListener("DOMContentLoaded", function () {
-    // Load saved tasks from localStorage
+function loadTasks() {
     savedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
-
-    // Rebuild tasks on the screen
     savedTasks.forEach(taskText => {
         createTaskElement(taskText);
     });
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    loadTasks(); // ✔️ Load tasks when page is ready
 
     const addButton  = document.getElementById("add-task-btn");
     const taskInput  = document.getElementById("task-input");
     const taskList   = document.getElementById("task-list");
+
+    // rest of the code...
+
 
     // Function to build and show a task on the page
     function createTaskElement(taskText) {
